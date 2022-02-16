@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const User = require('./User');
 
-const userSchema = new Schema(
+const thoughtSchema = new Schema(
     {
         thoughtText: {
             type: String,
@@ -17,18 +17,26 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-
+        reactions: [reactionSchema]
+    },
+    {
+        toJSON: {
+            virtuals: true,
+        },
+        id: false,
     },
 )
-
-
-
-// * `reactions` (These are like replies)
-//   * Array of nested documents created with the `reactionSchema`
 
 // **Schema Settings**:
 
 // Create a virtual called `reactionCount` that retrieves the length of the thought's `reactions` array field on query.
+
+
+const reactionSchema = new Schema({
+    reactionId: {
+    type: String,
+    }
+})
 
 // **Reaction** (SCHEMA ONLY)
 
