@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const User = require('./User');
 
 const thoughtSchema = new Schema(
     {
@@ -27,8 +26,7 @@ const thoughtSchema = new Schema(
     },
 )
 
-
-
+// reactionSchema has child relationship to thoughtSchema.
 const reactionSchema = new Schema({
     reactionId: {
         type: String.Types.ObjectId,
@@ -48,16 +46,14 @@ const reactionSchema = new Schema({
     },
 })
 
+// Create a virtual called `reactionCount` that retrieves the length of the thought's `reactions` array field on query.
+
+thoughtSchema
+    .virtual('reactionCount')
+    .get (function () {
+        return this.reactions.length;
+    })
 
 
 
-// * `createdAt`
-//   * Date
-//   * Set default value to the current timestamp
-//   * Use a getter method to format the timestamp on query
-
-
-// **Schema Settings**:
-
-// This will not be a model, but rather will be used as the `reaction` field's subdocument schema in the `Thought` model.
-
+module.exports = Thought;
