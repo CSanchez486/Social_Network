@@ -23,9 +23,19 @@ const userSchema = new Schema(
             ref: "User",
         }],
     },
-)
+    {
+        toJSON: {
+            virtuals: true,
+        },
+        id: false,
+    }
+);
 
+// creates virtual property 'friendCount' that counts how many friends user has
+userSchema.virtual('friendCount').get (function() {
+    return this.friends.length;
+})
 
-// **Schema Settings**:
+const User = model('user', userSchema);
 
-// Create a virtual called `friendCount` that retrieves the length of the user's `friends` array field on query.
+module.exports = User;
