@@ -27,31 +27,29 @@ const thoughtSchema = new Schema(
     },
 )
 
-// **Schema Settings**:
-
-// Create a virtual called `reactionCount` that retrieves the length of the thought's `reactions` array field on query.
 
 
 const reactionSchema = new Schema({
     reactionId: {
-    type: String,
-    }
+        type: String.Types.ObjectId,
+    },
+    reactionBody: {
+        type: String,
+        required: true,
+        maxlength: 280,
+    },
+    username: {
+        type: String,
+        required: true,
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
 })
 
-// **Reaction** (SCHEMA ONLY)
 
-// * `reactionId`
-//   * Use Mongoose's ObjectId data type
-//   * Default value is set to a new ObjectId
 
-// * `reactionBody`
-//   * String
-//   * Required
-//   * 280 character maximum
-
-// * `username`
-//   * String
-//   * Required
 
 // * `createdAt`
 //   * Date
@@ -62,3 +60,4 @@ const reactionSchema = new Schema({
 // **Schema Settings**:
 
 // This will not be a model, but rather will be used as the `reaction` field's subdocument schema in the `Thought` model.
+
