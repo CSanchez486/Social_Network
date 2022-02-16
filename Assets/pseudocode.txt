@@ -1,8 +1,8 @@
 Social Network API
 
 Packages:
-- express.js
-- mongoose
+x - express.js
+x - mongoose
 - JS Date for timestamps (native)
 
 MVP:
