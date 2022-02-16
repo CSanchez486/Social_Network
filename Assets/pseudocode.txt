@@ -1,0 +1,31 @@
+Social Network API
+
+Packages:
+- express.js
+- mongoose
+- JS Date for timestamps (native)
+
+MVP:
+- invoke app when server started
+- mongoose model sync to monogodb 
+- Insomnia:
+    - api get routes: users, thoughts
+        - comes back as json
+    - api post, put, delete: users, thoughts
+    - post, delete: +- reactions to thoughts, +- friends on friends list
+
+grade req:
+- github repo link
+- walk through video showing:
+    api working, technical acceptance, start application's server, get routes
+- mongoose Package connect to mongodb database
+- user/thought models
+-schema settings user/thought models
+- Thought model: reaction field is subdoc
+- timestamps
+- unique name
+- best practice: file structure, naming convention,etc , descriptive commits, readme
+- delete users thought when user is deleted
+
+
+
