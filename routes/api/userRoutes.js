@@ -1,3 +1,5 @@
+const router = require('express').Router();
+
 // **`/api/users`**
 
 // * `GET` all users
