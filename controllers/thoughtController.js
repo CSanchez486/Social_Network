@@ -48,20 +48,34 @@ module.exports ={
     // add reaction
     addReaction(req,res) {
         console.log('You added a reaction');
-        User.findOneAndUpdate(
-            { _id: req.params.userId },
+        Thought.findOneAndUpdate(
+            { _id: req.params.reactionId },
             { $addToSet: { reactions: req.params.reactionId } },
             { new:true }
         )
-        .then((user) => 
-            !user
+        .then((thought) => 
+            !thought
                 ? res
                     .status(404)
-                    .json({ message: "User Does Not Exist" })
-                :res.json(user)
+                    .json({ message: "Thought Does Not Exist" })
+                :res.json(thought)
         )
         .catch((err) => res.status(500).json(err));
     },
     // delete reaction
-
+    deleteReaction(req, res) {
+        Thought.findOneAndDelete(
+            { _ids: req.params.reactionId },
+            { $pull: { reaction: req.params.userId }},
+            { runValidators: true, new: true },
+        )
+    .then((thought) =>
+        !thought
+          ? res
+              .status(404)
+              .json({ message:'Thought Does Not Exist' })
+          : res.json(thought)
+      )
+      .catch((err) => res.status(500).json(err));
+    },
 }
