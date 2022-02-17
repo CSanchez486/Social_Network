@@ -12,7 +12,7 @@ const {
 // **`/api/thoughts`**
 
 // * `GET` to get all thoughts
-router.route('/')
+router.route('/api/thoughts')
     .get(getThoughts)
     // * `POST` to create a new thought 
     .post(createThought);
@@ -29,5 +29,11 @@ router.route('/:thoughtId')
 // **`/api/thoughts/:thoughtId/reactions`**
 
 // * `POST` to create a reaction stored in a single thought's `reactions` array field
+router.route('/:thoughtId/reactions')
+    .post(addReaction);
 
 // * `DELETE` to pull and remove a reaction by the reaction's `reactionId` value
+router.route("/:thoughtId/reactions")
+    .delete(deleteReaction);
+
+module.exports = router;

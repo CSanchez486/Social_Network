@@ -12,7 +12,7 @@ const {
 const { createThought, getThoughts } =require('../../controllers/thoughtController')
 
 // * `GET` all users - /api/users
-router.route('/')
+router.route('/api/users')
     .get(getUsers)
     .post(createUser);
 
