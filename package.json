@@ -1,7 +1,26 @@
 {
+  "name": "social_network",
+  "version": "1.0.0",
+  "description": "Application that creates a social network",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSanchez486/Social_Network.git"
+  },
+  "author": "Christian Sanchez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CSanchez486/Social_Network/issues"
+  },
+  "homepage": "https://github.com/CSanchez486/Social_Network#readme",
   "dependencies": {
-    "express": "^4.17.2",
+    "express": "^4.17.3",
     "mongodb": "^4.3.1",
-    "mongoose": "^6.2.1"
+    "mongoose": "^6.2.2",
+    "nodemon": "^2.0.15"
   }
 }
