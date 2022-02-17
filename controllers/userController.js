@@ -60,11 +60,21 @@ module.exports = {
                 :res.json(user)
         )
         .catch((err) => res.status(500).json(err));
-    }
+    },
+    // remove friend
+    removeFriend(req, res) {
+        User.findOneAndRemove(
+            { _ids: req.params.friendId },
+            { $pull: { friends: req.params.userId }},
+            { runValidators: true, new: true },
+        )
+    .then((user) =>
+        !user
+          ? res
+              .status(404)
+              .json({ message:'User Does Not Exist' })
+          : res.json(user)
+      )
+      .catch((err) => res.status(500).json(err));
+    },
 };
-
-
-
-
-
-// delete friend 
