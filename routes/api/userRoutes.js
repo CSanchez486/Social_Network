@@ -1,23 +1,36 @@
 const router = require('express').Router();
+const {
+    getUsers, 
+    getSingleUser, 
+    createUser, 
+    updateUser, 
+    deleteUser, 
+    addFriend,
+    removeFriend
+} = require('../../controllers/userController')
 
-// **`/api/users`**
+// * `GET` all users - /api/users
+router.route('/')
+    .get(getUsers)
+    .post(createUser);
 
-// * `GET` all users
 
-// * `GET` a single user by its `_id` and populated thought and friend data
+//   * `PUT` to update a user by its `_id`
+router.route('/:userId')
+    .get(getSingleUser)
+    .put(updateUser);
 
 // * `POST` a new user:
-
-// ```json
-// // example data
-// {
-//     "username": "lernantino",
-//     "email": "lernantino@gmail.com"
-//   }
-//   ```
-  
-//   * `PUT` to update a user by its `_id`
+router.route('/')
+    .get(getUsers)
+    .post(createUser);
   
 //   * `DELETE` to remove user by its `_id`
-  
+router.route('/:userId')
+    .get(getSingleUser)
+    .delete(getSingleUser);
+
+
+// * `GET` a single user by its `_id` and populated thought and friend data - /api/users/:userId
+
 // **BONUS**: Remove a user's associated thoughts when deleted.
