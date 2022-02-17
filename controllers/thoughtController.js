@@ -1,5 +1,5 @@
-const User = require('../models/User');
-const { Thought } = require('../models/Thought')
+const { User, Thought } = require('../models/');
+
 
 module.exports ={ 
     // Referenced userController.js 
@@ -32,7 +32,19 @@ module.exports ={
             .then((thought) => res.status(200).json(thought))
             .catch((err) => res.status(500).json(err));
     },
-// delete thought
+    // delete thought
+    deleteThought(req,res) {
+        Thought.findOneAndDelete({ _id:req.params.thoughtID})
+            // find thought by id
+            .then((thought) => 
+                !thought
+                ?res.status(404).json({ message: 'Thought does not exist'})
+                : thought.deleteMany(
+                    { _id: { $in: thought.thoughts} }),
+            )
+            .then(() => res.json({ message: 'THOUGHT DELETED - Thought does not exist'}))
+            .catch((err) => res.status(500).json(err));
+    },
 
 
 // add reaction
