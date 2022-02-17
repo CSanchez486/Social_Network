@@ -1,6 +1,5 @@
 const { User, Thought } = require('../models/');
 
-
 module.exports ={ 
     // Referenced userController.js 
     // create thought
