@@ -10,12 +10,16 @@ module.exports = {
     // get one user by id (find one)
     getSingleUser(req, res) {
         User.findOne({ _id: req.params.userId })
-        .select('__v')
-        .then((user) => res.status(200).json(users))
-        .catch((err) => res.status(500).json(err));
+            .select('__v')
+            .then((user) => res.status(200).json(user))
+            .catch((err) => res.status(500).json(err));
     },
     // create one user
-    createUser(req, res) 
+    createUser(req, res) {
+        User.create(req.body)
+            .then((user) => res.status(200).json(user))
+            .catch((err) => res.status(500).json(err));
+    },
 }
 
 
