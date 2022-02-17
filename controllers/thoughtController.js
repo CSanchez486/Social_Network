@@ -45,11 +45,23 @@ module.exports ={
             .then(() => res.json({ message: 'THOUGHT DELETED - Thought does not exist'}))
             .catch((err) => res.status(500).json(err));
     },
-
-
-// add reaction
-
-
-// delete reaction
+    // add reaction
+    addReaction(req,res) {
+        console.log('You added a reaction');
+        User.findOneAndUpdate(
+            { _id: req.params.userId },
+            { $addToSet: { reactions: req.params.reactionId } },
+            { new:true }
+        )
+        .then((user) => 
+            !user
+                ? res
+                    .status(404)
+                    .json({ message: "User Does Not Exist" })
+                :res.json(user)
+        )
+        .catch((err) => res.status(500).json(err));
+    },
+    // delete reaction
 
 }
