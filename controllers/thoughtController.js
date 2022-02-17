@@ -6,17 +6,22 @@ module.exports ={
     // create thought
     createThought(req, res) {
         Thought.create(req.body)
-            .then((user) => res.status(200).json(user))
+            .then((thought) => res.status(200).json(thought))
             .catch((err) => res.status(500).json(err));
 },
     // get one thought
     getSingleThought(req, res) {
         Thought.findOne({ _id: req.params.thoughtId })
             .select('__v')
-            .then((user) => res.status(200).json(user))
+            .then((thought) => res.status(200).json(thought))
             .catch((err) => res.status(500).json(err));
     },
     // get all thoughts
+    getThoughts(req, res) {
+        thought.find()
+        .then((thoughts) => res.status(200).json(thoughts))
+        .catch ((err) => res.status(500).json(err));
+    },
 
 
 // update thought
