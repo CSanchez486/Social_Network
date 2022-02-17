@@ -9,6 +9,8 @@ const {
     removeFriend
 } = require('../../controllers/userController')
 
+const { createThought, getThoughts } =require('../../controllers/thoughtController')
+
 // * `GET` all users - /api/users
 router.route('/')
     .get(getUsers)
@@ -28,9 +30,14 @@ router.route('/')
 //   * `DELETE` to remove user by its `_id`
 router.route('/:userId')
     .get(getSingleUser)
-    .delete(getSingleUser);
+    .delete(deleteUser);
 
 
 // * `GET` a single user by its `_id` and populated thought and friend data - /api/users/:userId
+getSingleUser('/api/users/:userId')
+    .post(addFriend)
+    .post(createThought)
+    .delete(removeFriend);
+
 
 // **BONUS**: Remove a user's associated thoughts when deleted.
