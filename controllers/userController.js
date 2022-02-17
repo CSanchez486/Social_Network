@@ -1,3 +1,4 @@
+const res = require('express/lib/response');
 const { User } = require('../models');
 
 module.exports = {
@@ -29,19 +30,23 @@ module.exports = {
         )
             .then((user) => res.status(200).json(user))
             .catch((err) => res.status(500).json(err));
-    }
-    
-}
+    },
+    // delete one user 
+    deleteUser(req,res) {
+        User.findOneAndDelete({ _id:req.params.userID})
+            // find user by id
+            .then((user) => 
+                !user
+                ?res.status(404).json({ message: 'User does not exist'})
+                : User.deleteMany(
+                    { _id: { $in: user.users} }),
+            )
+            .then(() => res.json({ message: 'ACCOUNT DELETED - User does not exist'}))
+            .catch((err) => res.status(500).json(err));
+    },
+};
 
 
-
-
-
-
-
-
-
-// delete one user 
 
 // add friend
 
