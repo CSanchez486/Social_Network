@@ -18,15 +18,20 @@ module.exports ={
     },
     // get all thoughts
     getThoughts(req, res) {
-        thought.find()
+        Thought.find()
         .then((thoughts) => res.status(200).json(thoughts))
         .catch ((err) => res.status(500).json(err));
     },
-
-
-// update thought
-
-
+    // update thought
+    updateThought(req,res) {
+        Thought.findOneAndUpdate(
+            { _id:req.params.thoughtID },
+            { $set: req.body },
+            { runValidators: true, new: true}
+        )
+            .then((thought) => res.status(200).json(thought))
+            .catch((err) => res.status(500).json(err));
+    },
 // delete thought
 
 
