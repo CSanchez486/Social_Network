@@ -44,10 +44,27 @@ module.exports = {
             .then(() => res.json({ message: 'ACCOUNT DELETED - User does not exist'}))
             .catch((err) => res.status(500).json(err));
     },
+    // add friend
+    addFriend(req,res) {
+        console.log('You added a friend');
+        User.findOneAndUpdate(
+            { _id: req.params.userId },
+            { $addToSet: { friends: req.params.friendId } },
+            { new:true }
+        )
+        .then((user) => 
+            !user
+                ? res
+                    .status(404)
+                    .json({ message: "User Does Not Exist" })
+                :res.json(user)
+        )
+        .catch((err) => res.status(500).json(err));
+    }
 };
 
 
 
-// add friend
+
 
 // delete friend 
