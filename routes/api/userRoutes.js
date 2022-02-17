@@ -36,6 +36,7 @@ router.route('/:userId')
 // * `GET` a single user by its `_id` and populated thought and friend data - /api/users/:userId
 getSingleUser('/api/users/:userId')
     .post(addFriend)
+    .get(getThoughts)
     .post(createThought)
     .delete(removeFriend);
 
