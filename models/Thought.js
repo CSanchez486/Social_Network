@@ -1,5 +1,26 @@
 const { Schema, model } = require('mongoose');
 
+
+// reactionSchema has child relationship to thoughtSchema.
+const reactionSchema = new Schema({
+    reactionId: {
+        type: String.Types.ObjectId,
+    },
+    reactionBody: {
+        type: String,
+        required: true,
+        maxlength: 280,
+    },
+    username: {
+        type: String,
+        required: true,
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
+})
+
 const thoughtSchema = new Schema(
     {
         thoughtText: {
@@ -26,26 +47,6 @@ const thoughtSchema = new Schema(
     },
 )
 
-// reactionSchema has child relationship to thoughtSchema.
-const reactionSchema = new Schema({
-    reactionId: {
-        type: String.Types.ObjectId,
-    },
-    reactionBody: {
-        type: String,
-        required: true,
-        maxlength: 280,
-    },
-    username: {
-        type: String,
-        required: true,
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-    },
-})
-
 // Create a virtual called `reactionCount` that retrieves the length of the thought's `reactions` array field on query.
 
 thoughtSchema
@@ -53,7 +54,5 @@ thoughtSchema
     .get (function () {
         return this.reactions.length;
     })
-
-
 
 module.exports = Thought;
