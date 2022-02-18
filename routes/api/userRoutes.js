@@ -39,3 +39,4 @@ router.route('/api/users/:userId')
 
 
 // **BONUS**: Remove a user's associated thoughts when deleted.
+module.exports = router;
