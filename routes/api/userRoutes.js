@@ -20,21 +20,18 @@ router.route('/api/users')
 //   * `PUT` to update a user by its `_id`
 router.route('/:userId')
     .get(getSingleUser)
-    .put(updateUser);
+    .put(updateUser)
+    .get(getSingleUser)
+    .delete(deleteUser);
 
 // * `POST` a new user:
 router.route('/')
     .get(getUsers)
     .post(createUser);
   
-//   * `DELETE` to remove user by its `_id`
-router.route('/:userId')
-    .get(getSingleUser)
-    .delete(deleteUser);
-
 
 // * `GET` a single user by its `_id` and populated thought and friend data - /api/users/:userId
-getSingleUser('/api/users/:userId')
+router.route('/api/users/:userId')
     .post(addFriend)
     .get(getThoughts)
     .post(createThought)
