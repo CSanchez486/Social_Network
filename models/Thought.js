@@ -4,7 +4,7 @@ const { Schema, model } = require('mongoose');
 // reactionSchema has child relationship to thoughtSchema.
 const reactionSchema = new Schema({
     reactionId: {
-        type: String.Types.ObjectId,
+        type: Schema.Types.ObjectId,
     },
     reactionBody: {
         type: String,
@@ -54,5 +54,7 @@ thoughtSchema
     .get (function () {
         return this.reactions.length;
     })
+
+const Thought = model('model', thoughtSchema);
 
 module.exports = Thought;
